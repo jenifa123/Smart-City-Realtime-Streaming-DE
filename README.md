@@ -71,7 +71,7 @@ It simulates and processes live data from a vehicle journey between **London and
 
  4. **Submit the Spark Job**
     ``` bash
-    docker exec -it smartcity-spark-master-1 spark-submit \
+    docker exec -it **spark-container-name** spark-submit \
       --master spark://spark-master:7077 \
       --conf spark.jars.ivy=/tmp/.ivy2 \
       --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0,org.apache.hadoop:hadoop-aws:3.3.1,com.amazonaws:aws-java-sdk:1.11.469 \
@@ -100,8 +100,10 @@ It simulates and processes live data from a vehicle journey between **London and
      - **Node type**: dc2.large (for testing) or ra3 (for production).  
      - **Cluster identifier**: smart-city-cluster  
      - **Database name**: smart_city_db  
-     - **Master username & password**: set credentials you’ll remember.  
-   - Wait for the cluster to be **available**.  
+     - **Master username & password**: set credentials you’ll remember.
+     - **Attach an IAM Role** : RedshiftRole 
+   - Wait for the cluster to be **available**.
+   - Make sure the IAM Role has AmazonS3ReadOnlyAccess + AWSGlueConsoleFullAccess  
    - Update the **VPC Security Group** to allow access from your IP (or VPC where Glue/Athena runs).
 
     <img width="553" height="248" alt="image" src="https://github.com/user-attachments/assets/6d9b055b-d15d-442b-ac49-6c602322faf5" />

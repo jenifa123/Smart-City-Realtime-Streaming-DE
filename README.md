@@ -61,7 +61,15 @@ It simulates and processes live data from a vehicle journey between **London and
      pip install -r requirements.txt
 
 2. **Start Kafka and Spark using Docker Compose**
-   - docker-compose up -d
+    1. To build docker:
+     ```bash
+      docker-compose up -d
+     ```
+       
+    2. To list kafka topics:
+     ```bash
+     kafka-topics --list --bootstrap-server broker:29092
+     ```
 
 3. **Run the Data Generator**
    - Execute the **`main.py`** script from PyCharm (or terminal).  
@@ -71,7 +79,7 @@ It simulates and processes live data from a vehicle journey between **London and
 
  4. **Submit the Spark Job**
     ``` bash
-    docker exec -it **spark-container-name** spark-submit \
+    docker exec -it smartcity-spark-master-1 spark-submit \
       --master spark://spark-master:7077 \
       --conf spark.jars.ivy=/tmp/.ivy2 \
       --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0,org.apache.hadoop:hadoop-aws:3.3.1,com.amazonaws:aws-java-sdk:1.11.469 \
